@@ -1,10 +1,10 @@
 clc
 clear all
 tic
-n=11;
+n=11; % Change last line of this code accordingly
 N=2^n; % MUB for C^N 
-Nb=64; % Nb<=N (excluding eye) .........number of bases of C^N to be calculated 
-Nb=min(N+1,Nb);
+Nb=64; % Nb<=N (excluding identity matrix) .........number of mutually unbiased bases of C^N to be calculated 
+Nb=min(N,Nb);
 bin=de2bi(0:2^n-1,n);
 %% list of primitive polynomials of degree degree n
 h{1}=[1 1];
@@ -57,6 +57,4 @@ for i=1:Nb
     B=[B b(:,:,i).'];
 end
 toc
-G=unique(abs(B'*B))
-string="first 64 MUBs of 2^11"
 save('MUB_2^11','B','string')
